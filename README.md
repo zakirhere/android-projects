@@ -1,2 +1,2 @@
 # android-projects
-Working on different android project with Dhaval Shah.
+Working on different android projects with Dhaval Shah.
