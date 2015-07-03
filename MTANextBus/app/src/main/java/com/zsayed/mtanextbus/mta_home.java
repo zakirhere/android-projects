@@ -34,6 +34,7 @@ public class mta_home extends ActionBarActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Creating the app UI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mta_home);
 
