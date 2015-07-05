@@ -1,6 +1,7 @@
 package com.zsayed.mtanextbus;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -144,4 +145,8 @@ public class mta_home extends ActionBarActivity
         }
     }
 
+    public void displayStock(View view) {
+        TextView resultText = (TextView) findViewById(R.id.resulttxt);
+        resultText.setText("API call is made");
+    }
 }
