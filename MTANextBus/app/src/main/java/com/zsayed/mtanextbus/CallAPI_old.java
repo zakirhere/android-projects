@@ -2,6 +2,7 @@ package com.zsayed.mtanextbus;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.widget.TextView;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -19,7 +20,6 @@ import java.net.URL;
 
 
 public class CallAPI_old extends AsyncTask<String, String, String> {
-    public final static String EXTRA_MESSAGE = "com.example.webapitutorial.MESSAGE";
     public static String resultToDisplay = "";
 
     @Override
@@ -55,16 +55,6 @@ public class CallAPI_old extends AsyncTask<String, String, String> {
         // Simple logic to determine if the email is dangerous, invalid, or valid
         if (result != null ) {
             resultToDisplay = result;
-//            if( result.equals("Spam Trap")) {
-//                resultToDisplay = "Dangerous email, please correct";
-//            }
-//            else if( Integer.parseInt(result) >= 300) {
-//                resultToDisplay = "Invalid email, please re-enter";
-//            }
-//            else {
-//                resultToDisplay = "Thank you for your submission";
-//            }
-
         }
         else {
             resultToDisplay = "Exception Occured";
@@ -74,10 +64,13 @@ public class CallAPI_old extends AsyncTask<String, String, String> {
 
     }
 
+
     protected void onPostExecute(String result) {
-//        Intent intent = new Intent(getApplicationContext(), mta_home.class);
-//        intent.putExtra(EXTRA_MESSAGE, resultToDisplay);
-//        startActivity(intent);
+//        mta_home myHome = new mta_home();
+//        myHome.printResult(resultToDisplay);
+
+//        TextView resultText = (TextView) findViewById(R.id.resulttxt);
+//        resultText.setText("API call is made: " + resultToDisplay);
     }
 
     private String parseXML( XmlPullParser parser ) throws XmlPullParserException, IOException {

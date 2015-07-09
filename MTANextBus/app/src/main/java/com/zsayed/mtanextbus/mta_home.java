@@ -164,8 +164,8 @@ public class mta_home extends ActionBarActivity
         String query = "select * from yahoo.finance.quote where symbol=\"SD\"";
         String fullUrlStr = baseUrl + EncodingUtil.encodeURIComponent(query) + "&format=xml&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
         new CallAPI().execute(fullUrlStr);
-        String output = new CallAPI().resultToDisplay;
-        resultText.setText("API call is made: " + output);
+//        String output = new CallAPI().resultToDisplay;
+//        resultText.setText("API call is made: " + output);
     }
 
 
@@ -225,9 +225,8 @@ public class mta_home extends ActionBarActivity
         }
 
         protected void onPostExecute(String result) {
-            Intent intent = new Intent(getApplicationContext(), mta_home.class);
-            intent.putExtra(resultToDisplay, true);
-            startActivity(intent);
+            TextView resultText = (TextView) findViewById(R.id.resulttxt);
+            resultText.setText("API call to finance is made: " + resultToDisplay);
         }
 
         private String parseXML( XmlPullParser parser ) throws XmlPullParserException, IOException {
