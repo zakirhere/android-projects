@@ -1,9 +1,5 @@
 package com.zsayed.mtanextbus;
 
-import android.content.Intent;
-import android.os.AsyncTask;
-import android.widget.TextView;
-
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -15,65 +11,44 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by ZSayed on 7/5/2015.
+ * Created by ZSayed on 7/9/2015.
  */
+public class helper {
 
-
-public class CallAPI_old extends AsyncTask<String, String, String> {
-    public static String resultToDisplay = "";
-
-    @Override
-    protected String doInBackground(String... params) {
-        String urlString=params[0]; // URL to call
+    public InputStream makeHTTPcall(String urlString) {
         InputStream in = null;
-        String result = null;
-
         // HTTP Get
         try {
             URL url = new URL(urlString);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             in = new BufferedInputStream(urlConnection.getInputStream());
+            return in;
         } catch (Exception e ) {
             System.out.println(e.getMessage());
-            return e.getMessage();
+            e.getMessage();
+            return in;
         }
+    }
 
+    public XmlPullParser getXMLparser(InputStream in) {
         // Parse XML
         XmlPullParserFactory pullParserFactory;
+        XmlPullParser parser = null;
         try {
             pullParserFactory = XmlPullParserFactory.newInstance();
-            XmlPullParser parser = pullParserFactory.newPullParser();
+            parser = pullParserFactory.newPullParser();
             parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
             parser.setInput(in, null);
-            result = parseXML(parser);
-        } catch (XmlPullParserException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
-        // Simple logic to determine if the email is dangerous, invalid, or valid
-        if (result != null ) {
-            resultToDisplay = result;
+        finally {
+            return parser;
         }
-        else {
-            resultToDisplay = "Exception Occured";
-        }
-
-        return resultToDisplay;
-
     }
 
-
-    protected void onPostExecute(String result) {
-//        mta_home myHome = new mta_home();
-//        myHome.printResult(resultToDisplay);
-
-//        TextView resultText = (TextView) findViewById(R.id.resulttxt);
-//        resultText.setText("API call is made: " + resultToDisplay);
-    }
-
-    private String parseXML( XmlPullParser parser ) throws XmlPullParserException, IOException {
+    public String parseXML( XmlPullParser parser ) throws XmlPullParserException, IOException {
         int eventType = parser.getEventType();
         String result = new String();
 
@@ -99,6 +74,5 @@ public class CallAPI_old extends AsyncTask<String, String, String> {
         return result;
     }
 
+}
 
-
-} // end CallAPI_old
