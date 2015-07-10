@@ -33,7 +33,7 @@ import java.net.URL;
 
 public class mta_home extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-
+    public final String API_KEY = "953b93c3-6d34-4ea2-8487-934d6da2374c";
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -158,10 +158,11 @@ public class mta_home extends ActionBarActivity
         }
     }
 
-    public void displayStock(View view) {
-        String baseUrl = "http://query.yahooapis.com/v1/public/yql?q=";
-        String query = "select * from yahoo.finance.quote where symbol=\"SD\"";
-        String fullUrlStr = baseUrl + EncodingUtil.encodeURIComponent(query) + "&format=xml&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=";
+    public void makeAPICall(View view) {
+        String baseUrl = "http://bustime.mta.info/api/siri/stop-monitoring.xml?";
+        String query = "key=" + API_KEY +"&OperatorRef=MTA&MonitoringRef=308209&LineRef=MTA%20NYCT_B63";
+
+        String fullUrlStr = baseUrl + query;
         new CallAPI().execute(fullUrlStr);
     }
 
@@ -176,15 +177,15 @@ public class mta_home extends ActionBarActivity
             XmlPullParser parser = h.getXMLparser(in);
 
             try {
-                return h.parseXML(parser);
+                return h.parseXML(parser, "DestinationName");
             } catch (Exception e) {
-                return "Exception found: " + e.getMessage();
+                return "Exception found in doInBackground: " + e.getMessage();
             }
         }
 
         protected void onPostExecute(String result) {
             TextView resultText = (TextView) findViewById(R.id.resulttxt);
-            resultText.setText("API call to finance is made: " + result);
+            resultText.setText("API call returns: " + result);
         }
     }
 }

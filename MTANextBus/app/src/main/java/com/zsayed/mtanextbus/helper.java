@@ -48,7 +48,7 @@ public class helper {
         }
     }
 
-    public String parseXML( XmlPullParser parser ) throws XmlPullParserException, IOException {
+    public String parseXML( XmlPullParser parser, String nodeName) throws XmlPullParserException, IOException {
         int eventType = parser.getEventType();
         String result = new String();
 
@@ -58,10 +58,7 @@ public class helper {
             {
                 case XmlPullParser.START_TAG:
                     name = parser.getName();
-                    if( name.equals("Error")) {
-                        System.out.println("Web API Error!");
-                    }
-                    else if ( name.equals("Name")) {
+                    if ( name.equals(nodeName)) {
                         result = parser.nextText();
                     }
                     break;

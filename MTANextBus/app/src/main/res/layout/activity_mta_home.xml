@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:text="Submit"
             android:id="@+id/submitBtn"
-            android:onClick="displayStock"
+            android:onClick="makeAPICall"
             android:layout_gravity="center_horizontal|bottom" />
 
         <TextView
