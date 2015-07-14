@@ -1,0 +1,1 @@
+http://bustime.mta.info/api/siri/stop-monitoring.xml?key=953b93c3-6d34-4ea2-8487-934d6da2374c&OperatorRef=MTA&MonitoringRef=308209&LineRef=MTA%20NYCT_B63

@@ -9,19 +9,11 @@
     <FrameLayout android:id="@+id/container" android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Submit"
-            android:id="@+id/submitBtn"
-            android:onClick="makeAPICall"
-            android:layout_gravity="center_horizontal|bottom" />
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Work in progress"
+            android:text="Work in progress. To see progress, select the menu from left"
             android:id="@+id/resulttxt"
             android:layout_gravity="left|top" />
     </FrameLayout>

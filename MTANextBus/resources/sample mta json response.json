@@ -1,0 +1,84 @@
+{
+    "Siri": {
+        "BusDetails": [
+			{
+            "BusNumber": "Q17",
+            "MonitoredStopVisit": [
+                {
+                    "Distances": {
+                        "PresentableDistance": "3 stops away",
+                        "StopsFromCall": 3,
+                        "Comment": "ONLY SHOW IN DEFAULT VIEW"
+                    }
+                },
+                {
+                    "Distances": {
+                        "PresentableDistance": "2.6 miles away",
+                        "StopsFromCall": 15,
+                        "Comment": "SHOW WHEN DETAIL LINK IS CLICK"
+                    }
+                },
+                {
+                    "Distances": {
+                        "PresentableDistance": "2.8 miles away",
+                        "StopsFromCall": 17,
+                        "Comment": "SHOW WHEN DETAIL LINK IS CLICK"
+                    }
+                }
+            ]
+		},
+					{
+            "BusNumber": "Q25",
+            "MonitoredStopVisit": [
+                {
+                    "Distances": {
+                        "PresentableDistance": "3 stops away",
+                        "StopsFromCall": 2,
+                        "Comment": "ONLY SHOW IN DEFAULT VIEW"
+                    }
+                },
+                {
+                    "Distances": {
+                        "PresentableDistance": "2.6 miles away",
+                        "StopsFromCall": 15,
+                        "Comment": "SHOW WHEN DETAIL LINK IS CLICK"
+                    }
+                },
+                {
+                    "Distances": {
+                        "PresentableDistance": "2.8 miles away",
+                        "StopsFromCall": 17,
+                        "Comment": "SHOW WHEN DETAIL LINK IS CLICK"
+                    }
+                }
+            ]
+		},
+					{
+            "BusNumber": "Q34",
+            "MonitoredStopVisit": [
+                {
+                    "Distances": {
+                        "PresentableDistance": "3 stops away",
+                        "StopsFromCall": 1,
+                        "Comment": "ONLY SHOW IN DEFAULT VIEW"
+                    }
+                },
+                {
+                    "Distances": {
+                        "PresentableDistance": "2.6 miles away",
+                        "StopsFromCall": 15,
+                        "Comment": "SHOW WHEN DETAIL LINK IS CLICK"
+                    }
+                },
+                {
+                    "Distances": {
+                        "PresentableDistance": "2.8 miles away",
+                        "StopsFromCall": 17,
+                        "Comment": "SHOW WHEN DETAIL LINK IS CLICK"
+                    }
+                }
+            ]
+		}
+		]
+    }
+}

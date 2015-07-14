@@ -1,0 +1,35 @@
+Version 0.5.0
+- Implement Q17 bus info for Kissena/Beech and display results
+
+Version 0.5.1
+- Implement Q17 bus info for Main St/Kissena and display results
+- Implement all buses for Kissena/Beech and display results in list
+
+Version 0.6.0
+- Save results for next time login
+
+Version 0.6.1
+- Add favorites
+
+Version 0.7.0
+- Search for buses
+- Search for stops
+
+Version 0.8.0
+- Add direction to stop id
+
+Version 1.0.0
+- Parameterize bus # search
+- Parameterize stop id search
+
+Version 1.1.0
+- Add Manhattan county
+
+Version 1.2.0
+- Add other counties
+
+Version 1.5.0
+- Create profile and save user data
+
+Version 2.0.0
+- Implement service based solution for searching bus

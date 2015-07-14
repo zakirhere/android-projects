@@ -76,6 +76,7 @@ public class mta_home extends ActionBarActivity
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
+                this.makeAPICall();
                 break;
         }
     }
@@ -158,7 +159,7 @@ public class mta_home extends ActionBarActivity
         }
     }
 
-    public void makeAPICall(View view) {
+    public void makeAPICall() {
         String baseUrl = "http://bustime.mta.info/api/siri/stop-monitoring.xml?";
         String query = "key=" + API_KEY +"&OperatorRef=MTA&MonitoringRef=308209&LineRef=MTA%20NYCT_B63";
 
