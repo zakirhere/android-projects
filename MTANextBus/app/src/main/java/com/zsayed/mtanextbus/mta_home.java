@@ -20,6 +20,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.json.JSONObject;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -160,7 +161,7 @@ public class mta_home extends ActionBarActivity
     }
 
     public void makeAPICall() {
-        String baseUrl = "http://bustime.mta.info/api/siri/stop-monitoring.xml?";
+        String baseUrl = "http://bustime.mta.info/api/siri/stop-monitoring.json?";
         String query = "key=" + API_KEY +"&OperatorRef=MTA&MonitoringRef=308209&LineRef=MTA%20NYCT_B63";
 
         String fullUrlStr = baseUrl + query;
@@ -172,13 +173,24 @@ public class mta_home extends ActionBarActivity
         helper h = new helper();
 
         @Override
+//        protected String doInBackground(String... params) {
+//            String urlString=params[0]; // URL to call
+//            InputStream in = h.makeHTTPcall(urlString);
+//            XmlPullParser parser = h.getXMLparser(in);
+//
+//            try {
+//                return h.parseXML(parser, "DestinationName");
+//            } catch (Exception e) {
+//                return "Exception found in doInBackground: " + e.getMessage();
+//            }
+//        }
         protected String doInBackground(String... params) {
             String urlString=params[0]; // URL to call
             InputStream in = h.makeHTTPcall(urlString);
-            XmlPullParser parser = h.getXMLparser(in);
 
             try {
-                return h.parseXML(parser, "DestinationName");
+                JSONObject jsonObj = new JSONObject(in.toString());
+                return h.smartJsonParser(jsonObj, "Siri.ServiceDelivery.ResponseTimestamp()");
             } catch (Exception e) {
                 return "Exception found in doInBackground: " + e.getMessage();
             }

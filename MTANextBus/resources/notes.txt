@@ -1,1 +1,37 @@
+Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.StopsFromCall()
+
+
+
+
+stop_id,stop_name,stop_desc,stop_lat,stop_lon,zone_id,stop_url,location_type,parent_station
+501360,"KISSENA BL/HOLLY AV",,  40.750893, -73.819305,,,0,
+504081,"KISSENA BL/HOLLY AV",,  40.750904, -73.819542,,,0,
+
+Optimized URL:
+http://bustime.mta.info/api/siri/stop-monitoring.xml?key=953b93c3-6d34-4ea2-8487-934d6da2374c&MonitoringRef=501372&LineRef=MTA%20NYCT_Q17
+
 http://bustime.mta.info/api/siri/stop-monitoring.xml?key=953b93c3-6d34-4ea2-8487-934d6da2374c&OperatorRef=MTA&MonitoringRef=308209&LineRef=MTA%20NYCT_B63
+
+
+http://bustime.mta.info/api/siri/stop-monitoring.xml?
+key=953b93c3-6d34-4ea2-8487-934d6da2374c&
+OperatorRef=MTA&
+MonitoringRef=308209&
+LineRef=MTA%20NYCT_B63
+
+http://bustime.mta.info/api/siri/stop-monitoring.xml?key=953b93c3-6d34-4ea2-8487-934d6da2374c&MonitoringRef=501360&LineRef=MTA%20NYCT_Q17&DirectionRef=1&VehicleMonitoringDetailLevel=calls&MaximumStopVisits=3
+http://bustime.mta.info/api/siri/stop-monitoring.xml?key=953b93c3-6d34-4ea2-8487-934d6da2374c&MonitoringRef=504081&LineRef=MTA%20NYCT_Q17&DirectionRef=1&VehicleMonitoringDetailLevel=calls&MaximumStopVisits=3
+
+MonitoringRef=501372&
+LineRef=MTA%20NYCT_Q17&
+DirectionRef=0&
+VehicleMonitoringDetailLevel=calls&
+MaximumStopVisits=3
+
+VehicleRef - (not needed)the ID of the vehicle to be monitored (optional).  This is the 4-digit number painted on the side of the bus, for example 7560. Response will include all buses if not included. 
+LineRef - a filter by 'fully qualified' route name, GTFS agency ID + route ID (optional).
+DirectionRef - a filter by GTFS direction ID (optional).  Either 0 or 1.
+VehicleMonitoringDetailLevel - Determines whether or not the response will include the stops ("calls" in SIRI-speak) each vehicle is going to make (optional).  To get calls data, use value calls, otherwise use value normal (default is normal).
+MaximumNumberOfCallsOnwards Limit on the number of OnwardCall elements for each vehicle when VehicleMonitoringDetailLevel=calls
+MaximumStopVisits - an upper bound on the number of buses to return in the results.
+MinimumStopVisitsPerLine - a lower bound on the number of buses to return in the results per line/route (assuming that many are available)
