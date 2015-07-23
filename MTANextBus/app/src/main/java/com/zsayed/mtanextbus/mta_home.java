@@ -162,7 +162,7 @@ public class mta_home extends ActionBarActivity
 
     public void makeAPICall() {
         String baseUrl = "http://bustime.mta.info/api/siri/stop-monitoring.json?";
-        String query = "key=" + API_KEY +"&OperatorRef=MTA&MonitoringRef=308209&LineRef=MTA%20NYCT_B63";
+        String query = "key=" + API_KEY +"&OperatorRef=MTA&MonitoringRef=501372&LineRef=MTA%20NYCT_Q17";
 
         String fullUrlStr = baseUrl + query;
         new CallAPI().execute(fullUrlStr);
@@ -187,10 +187,13 @@ public class mta_home extends ActionBarActivity
         protected String doInBackground(String... params) {
             String urlString=params[0]; // URL to call
             InputStream in = h.makeHTTPcall(urlString);
-
+            String displayOutput = null;
             try {
-                JSONObject jsonObj = new JSONObject(in.toString());
-                return h.smartJsonParser(jsonObj, "Siri.ServiceDelivery.ResponseTimestamp()");
+                JSONObject jsonObj = new JSONObject(h.getStringFromInputStream(in));
+
+                displayOutput = "Response time: " + h.smartJsonParser(jsonObj, "Siri.ServiceDelivery.ResponseTimestamp()");
+                displayOutput += "\n\n# of stops away: " + h.smartJsonParser(jsonObj, "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.StopsFromCall()");
+                return displayOutput;
             } catch (Exception e) {
                 return "Exception found in doInBackground: " + e.getMessage();
             }
@@ -198,7 +201,7 @@ public class mta_home extends ActionBarActivity
 
         protected void onPostExecute(String result) {
             TextView resultText = (TextView) findViewById(R.id.resulttxt);
-            resultText.setText("API call returns: " + result);
+            resultText.setText(result);
         }
     }
 }
