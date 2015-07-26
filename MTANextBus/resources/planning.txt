@@ -3,7 +3,6 @@ Version 0.5.0  (Sprint #3)
 - Display time of the data received (with seconds)
 
 Version 0.5.1  (Sprint #4)
-- Implement Q17 bus info for Main St/Kissena and display results
 - Implement all buses for Kissena/Beech and display results in list
 
 Version 0.6.0  (Sprint #5)
@@ -11,7 +10,7 @@ Version 0.6.0  (Sprint #5)
 - Save results for next time login
 
 Version 0.6.1  (Sprint #6)
-- Add favorites
+- Save settings for home, office and others
 
 Version 0.7.0  (Sprint #7)
 - Search for buses
@@ -23,6 +22,7 @@ Version 0.8.0  (Sprint #8)
 
 Version 0.9.0  (Sprint #9)
 - UI redesign
+- Auto refresh
 
 Version 1.0.0  (Sprint #10)
 - Parameterize bus # search

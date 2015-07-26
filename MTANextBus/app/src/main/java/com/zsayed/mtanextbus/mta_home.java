@@ -1,8 +1,11 @@
 package com.zsayed.mtanextbus;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.preference.PreferenceFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -18,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.json.JSONObject;
@@ -35,6 +39,8 @@ import java.net.URL;
 public class mta_home extends ActionBarActivity
         implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     public final String API_KEY = "953b93c3-6d34-4ea2-8487-934d6da2374c";
+
+
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
      */
@@ -59,6 +65,7 @@ public class mta_home extends ActionBarActivity
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+
     }
 
     @Override
@@ -112,12 +119,49 @@ public class mta_home extends ActionBarActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
+            startActivity(new Intent(this, Settings.PrefsFragment.class));
+//            getFragmentManager().beginTransaction()
+//                    .replace(android.R.id.content, new PrefsFragment()).commit();
             return true;
         }
         else if (id == R.id.action_help) {
+            helpMenuItem();
+            return true;
+        }
+        else if (id == R.id.action_about) {
+            aboutMenuItem();
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void settingsMenuItem() {
+        startActivity(new Intent(this, Settings.class));
+    }
+
+    private void helpMenuItem() {
+        new AlertDialog.Builder(this)
+                .setTitle("Help")
+                .setMessage("This will be updated after the app complete 1.0 version")
+                .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing for now
+                    }
+                }).show();
+    }
+
+    private void aboutMenuItem() {
+        new AlertDialog.Builder(this)
+                .setTitle("About")
+                .setMessage("Sole developer Zakir Sayed and can be contacted at zakirhere@gmail.com")
+                .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing for now
+                    }
+                }).show();
     }
 
     /**
@@ -173,25 +217,21 @@ public class mta_home extends ActionBarActivity
         helper h = new helper();
 
         @Override
-//        protected String doInBackground(String... params) {
-//            String urlString=params[0]; // URL to call
-//            InputStream in = h.makeHTTPcall(urlString);
-//              XmlPullParser parser = h.getXMLparser(in);
-//
-//            try {
-//                return h.parseXML(parser, "DestinationName");
-//            } catch (Exception e) {
-//                return "Exception found in doInBackground: " + e.getMessage();
-//            }
-//        }
         protected String doInBackground(String... params) {
             String urlString=params[0]; // URL to call
             InputStream in = h.makeHTTPcall(urlString);
             String displayOutput = null;
+            String BusLineNumber = "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].MonitoredVehicleJourney.PublishedLineName()";
+            String RecordedTime = "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].RecordedAtTime()";
+            String serverTime = "Siri.ServiceDelivery.ResponseTimestamp()";
+
             try {
                 JSONObject jsonObj = new JSONObject(h.getStringFromInputStream(in));
+                serverTime = h.smartJsonParser(jsonObj, serverTime);
+                RecordedTime = h.smartJsonParser(jsonObj, RecordedTime);
 
-                displayOutput = "Response time: " + h.smartJsonParser(jsonObj, "Siri.ServiceDelivery.ResponseTimestamp()");
+                displayOutput = "Data old by: " + h.displayTimeDiff(serverTime, RecordedTime);
+                displayOutput += "\n\nBus detail: " + h.smartJsonParser(jsonObj, BusLineNumber);
                 displayOutput += "\n\n# of stops away: " + h.smartJsonParser(jsonObj, "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.StopsFromCall()");
                 return displayOutput;
             } catch (Exception e) {
@@ -204,4 +244,15 @@ public class mta_home extends ActionBarActivity
             resultText.setText(result);
         }
     }
+
+/*    public static class PrefsFragment extends PreferenceFragment {
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+            // Load the preferences from an XML resource
+            addPreferencesFromResource(R.xml.preference);
+        }
+    }*/
 }

@@ -14,12 +14,52 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Pattern;
 
 /**
  * Created by ZSayed on 7/9/2015.
  */
 public class helper {
+
+    public long getElapsedTime(String serverResponseTime, String RecordedTime) throws ParseException {
+//    	String RecordedTime = "2015-07-24T21:34:55.000-04:00";
+        serverResponseTime = serverResponseTime.replaceFirst("T", " ");
+        String getServerTimeStamp = serverResponseTime.substring(0, 19);
+
+        RecordedTime = RecordedTime.replaceFirst("T", " ");
+        String getRecordedTimeStamp = RecordedTime.substring(0, 19);
+
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date currentDateStamp = format.parse(getServerTimeStamp);
+        Date recordedDateStamp = format.parse(getRecordedTimeStamp);
+
+        long timeDiff = currentDateStamp.getTime() - recordedDateStamp.getTime();
+        return timeDiff/1000 - 2;
+    }
+
+    public String displayTimeDiff(String serverResponseTime, String RecordedTime) {
+        int getMins = 0;
+        int getSeconds = 0;
+        long timeInSeconds = 0;
+        try {
+            timeInSeconds = getElapsedTime(serverResponseTime, RecordedTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        if(timeInSeconds > 59) {
+            getMins = (int) (timeInSeconds/60);
+            getSeconds = (int) (timeInSeconds % 60);
+        }
+        else {
+            return Integer.toString((int) timeInSeconds) + " (seconds)";
+        }
+
+        return Integer.toString(getMins) + ":" + Integer.toString(getSeconds) + " (min:sec)";
+    }
 
     public InputStream makeHTTPcall(String urlString) {
         InputStream in = null;

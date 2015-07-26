@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:title="Global Preferences">
+
+        <CheckBoxPreference
+            android:key="checkbox_refresh"
+            android:title="Auto Refresh"
+            android:summary="Auto refresh bus info" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="HOME">
+
+        <EditTextPreference
+            android:key="home_stop_edittext"
+            android:title="Edit stop name"
+            android:summary="Modify stop intersection for home"
+            android:dialogTitle="Exact originating street intersection" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="OFFICE">
+
+        <EditTextPreference
+            android:key="office_stop_edittext"
+            android:title="Edit stop name"
+            android:summary="Modify stop intersection for office"
+            android:dialogTitle="Exact originating street intersection" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="OTHER">
+
+        <EditTextPreference
+            android:key="other_stop_edittext"
+            android:title="Edit stop name"
+            android:summary="Modify stop intersection for other"
+            android:dialogTitle="Exact originating street intersection" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

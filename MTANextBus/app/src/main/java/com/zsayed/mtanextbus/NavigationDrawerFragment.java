@@ -104,6 +104,7 @@ public class NavigationDrawerFragment extends Fragment {
                 new String[]{
                         getString(R.string.title_section1),
                         getString(R.string.title_section2),
+                        "Going Gym"
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
@@ -247,7 +248,9 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         if (item.getItemId() == R.id.action_example) {
-            Toast.makeText(getActivity(), "Example action.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Refreshing info, please wait.", Toast.LENGTH_SHORT).show();
+
+//            makeAPICall();
             return true;
         }
 
