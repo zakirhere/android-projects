@@ -16,7 +16,8 @@ public class Settings extends FragmentActivity {
             super.onCreate(savedInstanceState);
 
             // Load the preferences from an XML resource
-            addPreferencesFromResource(R.xml.preference);
+//            addPreferencesFromResource(R.xml.preference);
+
         }
     }
 }

@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Work in progress. To see progress, select the menu from left"
+            android:text="Work in progress. Current implementation is only for going to office for my bus stop. Coming soon the settings features for user defined bus stop and bus number."
             android:id="@+id/resulttxt"
             android:layout_gravity="left|top" />
 

@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.preference.PreferenceFragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -37,9 +38,21 @@ import java.net.URL;
 
 
 public class mta_home extends ActionBarActivity
-        implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+        implements NavigationDrawerFragment.NavigationDrawerCallbacks, MyFrag.MyFragInterface {
     public final String API_KEY = "953b93c3-6d34-4ea2-8487-934d6da2374c";
+    public static String displayOutput = "";
 
+
+    public void needsHide() {
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        //find the fragment by View or Tag
+        MyFrag myFrag = (MyFrag)fragmentManager.findFragmentById(R.id.container);
+        fragmentTransaction.hide(myFrag);
+        fragmentTransaction.commit();
+        //do more if you must
+    }
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -75,6 +88,8 @@ public class mta_home extends ActionBarActivity
         fragmentManager.beginTransaction()
                 .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
                 .commit();
+
+
     }
 
     public void onSectionAttached(int number) {
@@ -84,7 +99,19 @@ public class mta_home extends ActionBarActivity
                 break;
             case 2:
                 mTitle = getString(R.string.title_section2);
-                this.makeAPICall();
+                displayOutput = "BUS DETAILS FOR OFFICE\n";
+                this.makeAPICall(501372, "Q17");
+                this.makeAPICall(501372, "Q27");
+                this.makeAPICall(501372, "Q25");
+                this.makeAPICall(501372, "Q34");
+                break;
+            case 3:
+                mTitle = getString(R.string.title_section3);
+                displayOutput = "BUS DETAILS FOR GYM\n";
+                this.makeAPICall(501363, "Q17");
+                this.makeAPICall(501363, "Q27");
+                this.makeAPICall(501363, "Q25");
+                this.makeAPICall(501363, "Q34");
                 break;
         }
     }
@@ -119,10 +146,11 @@ public class mta_home extends ActionBarActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-
-            startActivity(new Intent(this, Settings.PrefsFragment.class));
-//            getFragmentManager().beginTransaction()
-//                    .replace(android.R.id.content, new PrefsFragment()).commit();
+            TextView resultText = (TextView) findViewById(R.id.resulttxt);
+            resultText.setText("");
+//            startActivity(new Intent(this, Settings.PrefsFragment.class));
+            getFragmentManager().beginTransaction()
+                    .replace(android.R.id.content, new PrefsFragment()).commit();
             return true;
         }
         else if (id == R.id.action_help) {
@@ -186,8 +214,6 @@ public class mta_home extends ActionBarActivity
             return fragment;
         }
 
-        public PlaceholderFragment() {
-        }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -204,12 +230,12 @@ public class mta_home extends ActionBarActivity
         }
     }
 
-    public void makeAPICall() {
+    public void makeAPICall(long busStopId, String busNumber) {
         String baseUrl = "http://bustime.mta.info/api/siri/stop-monitoring.json?";
-        String query = "key=" + API_KEY +"&OperatorRef=MTA&MonitoringRef=501372&LineRef=MTA%20NYCT_Q17";
+        String query = "key=" + API_KEY +"&OperatorRef=MTA&MonitoringRef=" + busStopId + "&LineRef=MTA%20NYCT_" + busNumber;
 
         String fullUrlStr = baseUrl + query;
-        new CallAPI().execute(fullUrlStr);
+        new CallAPI().execute(fullUrlStr, busNumber);
     }
 
 
@@ -220,7 +246,6 @@ public class mta_home extends ActionBarActivity
         protected String doInBackground(String... params) {
             String urlString=params[0]; // URL to call
             InputStream in = h.makeHTTPcall(urlString);
-            String displayOutput = null;
             String BusLineNumber = "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].MonitoredVehicleJourney.PublishedLineName()";
             String RecordedTime = "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].RecordedAtTime()";
             String serverTime = "Siri.ServiceDelivery.ResponseTimestamp()";
@@ -230,12 +255,15 @@ public class mta_home extends ActionBarActivity
                 serverTime = h.smartJsonParser(jsonObj, serverTime);
                 RecordedTime = h.smartJsonParser(jsonObj, RecordedTime);
 
-                displayOutput = "Data old by: " + h.displayTimeDiff(serverTime, RecordedTime);
-                displayOutput += "\n\nBus detail: " + h.smartJsonParser(jsonObj, BusLineNumber);
-                displayOutput += "\n\n# of stops away: " + h.smartJsonParser(jsonObj, "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.StopsFromCall()");
+                displayOutput += "\nData old by: " + h.displayTimeDiff(serverTime, RecordedTime);
+                displayOutput += "\nBus detail: " + h.smartJsonParser(jsonObj, BusLineNumber);
+                displayOutput += "\n# of stops away: " + h.smartJsonParser(jsonObj, "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.StopsFromCall()");
+                displayOutput += "\n";
+
                 return displayOutput;
             } catch (Exception e) {
-                return "Exception found in doInBackground: " + e.getMessage();
+                displayOutput += "\nBus detail: " + params[1];
+                return displayOutput += "\nError: " + e.getMessage() + "\n";
             }
         }
 
@@ -245,14 +273,18 @@ public class mta_home extends ActionBarActivity
         }
     }
 
-/*    public static class PrefsFragment extends PreferenceFragment {
 
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-
-            // Load the preferences from an XML resource
-            addPreferencesFromResource(R.xml.preference);
-        }
-    }*/
 }
+
+
+//public class PrefsFragment1 extends PreferenceFragment {
+//
+//    @Override
+//    public void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        // Load the preferences from an XML resource
+//        ((MyFrag.MyFragInterface)this.getActivity()).needsHide();
+//        addPreferencesFromResource(R.xml.preference);
+//
+//    }
+//}
