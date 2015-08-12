@@ -100,18 +100,18 @@ public class mta_home extends ActionBarActivity
             case 2:
                 mTitle = getString(R.string.title_section2);
                 displayOutput = "BUS DETAILS FOR OFFICE\n";
-                this.makeAPICall(501372, "Q17");
-                this.makeAPICall(501372, "Q27");
-                this.makeAPICall(501372, "Q25");
-                this.makeAPICall(501372, "Q34");
+                this.makeAPICall(501362, "MTA%20NYCT_Q17");
+                this.makeAPICall(501362, "MTA%20NYCT_Q27");
+                this.makeAPICall(501362, "MTABC_Q25");
+                this.makeAPICall(501362, "MTABC_Q34");
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
                 displayOutput = "BUS DETAILS FOR GYM\n";
-                this.makeAPICall(501363, "Q17");
-                this.makeAPICall(501363, "Q27");
-                this.makeAPICall(501363, "Q25");
-                this.makeAPICall(501363, "Q34");
+                this.makeAPICall(501363, "MTA%20NYCT_Q17");
+                this.makeAPICall(501363, "MTA%20NYCT_Q27");
+                this.makeAPICall(501363, "MTABC_Q25");
+                this.makeAPICall(501363, "MTABC_Q34");
                 break;
         }
     }
@@ -232,7 +232,7 @@ public class mta_home extends ActionBarActivity
 
     public void makeAPICall(long busStopId, String busNumber) {
         String baseUrl = "http://bustime.mta.info/api/siri/stop-monitoring.json?";
-        String query = "key=" + API_KEY +"&OperatorRef=MTA&MonitoringRef=" + busStopId + "&LineRef=MTA%20NYCT_" + busNumber;
+        String query = "key=" + API_KEY +"&OperatorRef=MTA&MonitoringRef=" + busStopId + "&LineRef=" + busNumber;
 
         String fullUrlStr = baseUrl + query;
         new CallAPI().execute(fullUrlStr, busNumber);

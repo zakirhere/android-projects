@@ -1,3 +1,10 @@
+Do you often want to get simple details for the bus information you regularly take? Then we both were in the same requirements and hence I decided to work on this hobby utility app. 
+
+NYC next bus will give details about the bus coming up and with how many stops it is away so that we can prepare to catch them on time.
+
+Please apologize for the work in progress and expect more updates soon.
+
+
 Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.StopsFromCall()
 Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].RecordedAtTime()
 
