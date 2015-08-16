@@ -1,5 +1,8 @@
 package com.zsayed.mtanextbus;
 
+import android.app.Fragment;
+import android.widget.Toast;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,7 +26,7 @@ import java.util.regex.Pattern;
 /**
  * Created by ZSayed on 7/9/2015.
  */
-public class helper {
+public class HelperMethods {
 
     public long getElapsedTime(String serverResponseTime, String RecordedTime) throws ParseException {
 //    	String RecordedTime = "2015-07-24T21:34:55.000-04:00";
@@ -47,8 +50,10 @@ public class helper {
         long timeInSeconds = 0;
         try {
             timeInSeconds = getElapsedTime(serverResponseTime, RecordedTime);
-        } catch (ParseException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            //e.printStackTrace();
+//            this.longToast("EXCEPTION + " + e.getMessage());
+            return "N/A";
         }
         if(timeInSeconds > 59) {
             getMins = (int) (timeInSeconds/60);
@@ -106,98 +111,12 @@ public class helper {
 
     }
 
-    public XmlPullParser getXMLparser(InputStream in) {
-        // Parse XML
-        XmlPullParserFactory pullParserFactory;
-        XmlPullParser parser = null;
-        try {
-            pullParserFactory = XmlPullParserFactory.newInstance();
-            parser = pullParserFactory.newPullParser();
-            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-            parser.setInput(in, null);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            return parser;
-        }
-    }
-
-    public class myResult {
-        String jsonName;
-        int jsonInt;
-
-        public myResult(String name, int val) {
-            this.jsonName = name;
-            this.jsonInt = val;
-        }
-
-        public String getName() {
-            return jsonName;
-        }
-
-        public int getIndex() {
-            return jsonInt;
-        }
-
-    }
-
-    public myResult getArrayValues(String elm) {
-        String[] splitted = elm.split(Pattern.quote("["));
-        System.out.println(splitted[0]);
-        int Index = Integer.parseInt(splitted[1].replaceAll(Pattern.quote("]"), ""));
-        System.out.println(Index);
-
-        return new myResult(splitted[0], Index);
-    }
-
-
-    public String smartJsonParser(JSONObject json, String jsonPath) throws JSONException {
-
-        String[] jsonElements = jsonPath.split("[.]");
-        for(String elm: jsonElements) {
-            if(elm.endsWith("()")) {
-                return json.getString(elm.replaceAll("[()]", ""));
-            }
-            else if(elm.endsWith("]")) {
-                myResult splitted = getArrayValues(elm);
-                JSONArray j_arry = json.getJSONArray(splitted.getName());
-                json = j_arry.getJSONObject(splitted.getIndex()); //<< get value here
-
-            }
-            else {
-                json = json.getJSONObject(elm);
-
-            }
-        }
-
-        return "not found";
-    }
-
-
-    public String parseXML( XmlPullParser parser, String nodeName) throws XmlPullParserException, IOException {
-        int eventType = parser.getEventType();
-        String result = new String();
-
-        while( eventType!= XmlPullParser.END_DOCUMENT) {
-            String name = null;
-            switch(eventType)
-            {
-                case XmlPullParser.START_TAG:
-                    name = parser.getName();
-                    if ( name.equals(nodeName)) {
-                        result = parser.nextText();
-                    }
-                    break;
-                case XmlPullParser.END_TAG:
-                    break;
-            } // end switch
-
-            eventType = parser.next();
-        } // end while
-        return result;
-    }
-
+//    public void shortToast(String msg) {
+//        Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+//    }
+//
+//    public void longToast(String msg) {
+//        Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
+//    }
 }
 

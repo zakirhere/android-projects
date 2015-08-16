@@ -9,13 +9,20 @@
     <FrameLayout android:id="@+id/container" android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Work in progress. Current implementation is only for going to office for my bus stop. Coming soon the settings features for user defined bus stop and bus number."
-            android:id="@+id/resulttxt"
-            android:layout_gravity="left|top" />
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView"
+            android:layout_gravity="left|top" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Work in progress. Current implementation is only for going to office for my bus stop. Coming soon the settings features for user defined bus stop and bus number."
+                android:id="@+id/resulttxt"
+                android:layout_gravity="left|top" />
+        </ScrollView>
 
     </FrameLayout>
 

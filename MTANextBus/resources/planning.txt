@@ -4,13 +4,15 @@ Version 0.5.0  (Sprint #3)
 
 Version 0.5.1  (Sprint #4)
 - Implement all buses for Kissena/Beech and display results in list
+- Show recent 3 buses
+- Project refactor
 
 Version 0.6.0  (Sprint #5)
 - Loading notification
-- Save results for next time login
+- Save settings for home, office and others
 
 Version 0.6.1  (Sprint #6)
-- Save settings for home, office and others
+- Save results for next time login
 
 Version 0.7.0  (Sprint #7)
 - Search for buses

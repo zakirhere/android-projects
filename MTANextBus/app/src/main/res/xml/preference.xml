@@ -42,5 +42,7 @@
             android:dialogTitle="Exact originating street intersection" />
 
     </PreferenceCategory>
+    <intent android:action="android.intent.action.VIEW"
+        android:data="http://www.android.com" />
 
 </PreferenceScreen>

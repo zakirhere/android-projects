@@ -1,0 +1,70 @@
+{
+  "Name": "Bus Details",
+  "Description": "Storing the bus details and bus stop information for next time uses",
+  "Office": {
+    "StopId" : "501362",
+    "Buses": [
+        {
+          "BusNumber" : "MTA%20NYCT_Q17",
+          "Direction" : "Flushing Main St"
+        },
+        {
+          "BusNumber" : "MTA%20NYCT_Q27",
+          "Direction" : "Flushing Main St"
+        },
+        {
+          "BusNumber" : "MTABC_Q25",
+          "Direction" : "Flushing Main St"
+        },
+        {
+          "BusNumber" : "MTABC_Q34",
+          "Direction" : "Flushing Main St"
+        }
+    ]
+  },
+
+  "Home": {
+    "StopId" : "501362",
+    "Buses": [
+      {
+        "BusNumber" : "MTA%20NYCT_Q17",
+        "Direction" : "Flushing Main St"
+      },
+      {
+        "BusNumber" : "MTA%20NYCT_Q27",
+        "Direction" : "Flushing Main St"
+      },
+      {
+        "BusNumber" : "MTABC_Q25",
+        "Direction" : "Flushing Main St"
+      },
+      {
+        "BusNumber" : "MTABC_Q34",
+        "Direction" : "Flushing Main St"
+      }
+    ]
+  },
+
+  "Other": {
+    "StopId" : "501363",
+    "Buses": [
+      {
+        "BusNumber" : "MTA%20NYCT_Q17",
+        "Direction" : "Flushing Main St"
+      },
+      {
+        "BusNumber" : "MTA%20NYCT_Q27",
+        "Direction" : "Flushing Main St"
+      },
+      {
+        "BusNumber" : "MTABC_Q25",
+        "Direction" : "Flushing Main St"
+      },
+      {
+        "BusNumber" : "MTABC_Q34",
+        "Direction" : "Flushing Main St"
+      }
+    ]
+  }
+
+}
