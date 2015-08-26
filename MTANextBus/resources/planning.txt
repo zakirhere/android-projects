@@ -10,6 +10,7 @@ Version 0.5.1  (Sprint #4)
 Version 0.6.0  (Sprint #5)
 - Loading notification
 - Save settings for home, office and others
+- Take any bus or stop
 
 Version 0.6.1  (Sprint #6)
 - Save results for next time login
