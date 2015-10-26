@@ -6,6 +6,8 @@ import android.widget.TextView;
 import org.json.JSONObject;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by ZSayed on 8/15/2015.
@@ -16,6 +18,29 @@ public class ApiCaller extends HelperMethods{
     public String getStopsAway(int i) {
         return "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[" + i + "].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.StopsFromCall()";
     }
+
+    public String getStopsAway(JSONObject jsonObj) {
+        ArrayList arr = new ArrayList();
+        String result = "";
+        try {
+            for(int j=0; j<5; j++) {
+            String query = "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[" + j + "].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.StopsFromCall()";
+                int temp = Integer.parseInt(jr.smartJsonParser(jsonObj, query));
+                if(temp != 0 && !arr.contains(temp)) {
+                    arr.add(temp);
+                    result += "\n# of stops away: " + temp;
+                }
+            }
+        }
+        catch(Exception e) {
+
+        }
+        finally {
+            //String result += "\n# of stops away: " + jr.smartJsonParser(jsonObj, getStopsAway(0));
+            return result;
+        }
+    }
+
 
     public String extractStopsAway(String... params) {
 
@@ -33,10 +58,11 @@ public class ApiCaller extends HelperMethods{
 
             result = "\nData old by: " + this.displayTimeDiff(serverTime, RecordedTime);
             result += "\nBus detail: " + jsonBusDetail(jr.smartJsonParser(jsonObj, BusLineNumber), params[1]);
-            result += "\n# of stops away: " + jr.smartJsonParser(jsonObj, getStopsAway(0));
-            result += "\n# of stops away: " + jr.smartJsonParser(jsonObj, getStopsAway(1));
-            result += "\n# of stops away: " + jr.smartJsonParser(jsonObj, getStopsAway(2));
 
+    //            result += "\n# of stops away: " + jr.smartJsonParser(jsonObj, getStopsAway(0));
+    //            result += "\n# of stops away: " + jr.smartJsonParser(jsonObj, getStopsAway(1));
+    //            result += "\n# of stops away: " + jr.smartJsonParser(jsonObj, getStopsAway(2));
+            result += getStopsAway(jsonObj);
             result += "\n";
 
             return result;

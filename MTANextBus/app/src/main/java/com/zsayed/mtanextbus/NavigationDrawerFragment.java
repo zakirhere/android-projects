@@ -247,10 +247,11 @@ public class NavigationDrawerFragment extends Fragment {
             return true;
         }
 
-        if (item.getItemId() == R.id.action_example) {
+        if (item.getItemId() == R.id.action_refresh) {
             Toast.makeText(getActivity(), "Refreshing info, please wait.", Toast.LENGTH_SHORT).show();
-
 //            makeAPICall();
+            MtaHome myHome = new MtaHome();
+            myHome.onSectionAttached(2);
             return true;
         }
 

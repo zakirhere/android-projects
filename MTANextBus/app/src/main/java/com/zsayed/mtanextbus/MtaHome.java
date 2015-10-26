@@ -190,7 +190,7 @@ public class MtaHome extends ActionBarActivity
     }
 
 
-    private class CallAPI extends AsyncTask<String, String, String> {
+    public class CallAPI extends AsyncTask<String, String, String> {
         HelperMethods h = new HelperMethods();
         JsonResponse jr = new JsonResponse();
         ApiCaller ac = new ApiCaller();
