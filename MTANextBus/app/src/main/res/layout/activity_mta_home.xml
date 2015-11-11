@@ -9,19 +9,58 @@
     <FrameLayout android:id="@+id/container" android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <ScrollView
+        <EditText android:id="@+id/fil_busNumber" android:layout_width="179dp"
+            android:layout_height="wrap_content" android:ems="10"
+            android:hint="@string/Search_for_Bus_Number"
+            android:visibility="gone">
+
+            <requestFocus />
+        </EditText>
+        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="418dp"
+            android:padding="10dp"
+            android:textSize="16sp"
+            android:visibility="visible">
+        </TextView>
+
+        <ListView android:id="@+id/bus_number" android:layout_width="fill_parent"
+            android:layout_height="181dp"
+            android:layout_gravity="left|center_vertical"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/fil_stopId"
+            android:layout_width="179dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/Search_for_Bus_Stop"
+            android:layout_gravity="right|top"
+            android:visibility="gone" />
+
+        <Button
+            android:layout_width="269dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_accept"
+            android:id="@+id/bSubmit"
+            android:layout_gravity="bottom|center"
+            android:visibility="invisible" />
+
+        <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="424dp"
             android:id="@+id/scrollView"
-            android:layout_gravity="left|top" >
+            android:layout_gravity="center"
+            android:fillViewport="false"
+            android:visibility="visible">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Work in progress. Current implementation is only for going to office for my bus stop. Coming soon the settings features for user defined bus stop and bus number."
+                android:text=""
                 android:id="@+id/resulttxt"
-                android:layout_gravity="left|top" />
+                android:layout_gravity="right|top" />
         </ScrollView>
 
     </FrameLayout>

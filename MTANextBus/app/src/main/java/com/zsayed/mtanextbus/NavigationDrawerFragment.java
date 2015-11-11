@@ -104,7 +104,8 @@ public class NavigationDrawerFragment extends Fragment {
                 new String[]{
                         getString(R.string.title_section1),
                         getString(R.string.title_section2),
-                        "Going Gym"
+                        "Going Gym",
+                        "Testing Custom"
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
@@ -174,7 +175,7 @@ public class NavigationDrawerFragment extends Fragment {
         // If the user hasn't 'learned' about the drawer, open it to introduce them to the drawer,
         // per the navigation drawer design guidelines.
         if (!mUserLearnedDrawer && !mFromSavedInstanceState) {
-            mDrawerLayout.openDrawer(mFragmentContainerView);
+//            mDrawerLayout.openDrawer(mFragmentContainerView);
         }
 
         // Defer code dependent on restoration of previous instance state.
@@ -249,9 +250,6 @@ public class NavigationDrawerFragment extends Fragment {
 
         if (item.getItemId() == R.id.action_refresh) {
             Toast.makeText(getActivity(), "Refreshing info, please wait.", Toast.LENGTH_SHORT).show();
-//            makeAPICall();
-            MtaHome myHome = new MtaHome();
-            myHome.onSectionAttached(2);
             return true;
         }
 

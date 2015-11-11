@@ -48,6 +48,7 @@ public class ApiCaller extends HelperMethods{
         String urlString=params[0]; // URL to call
         InputStream in = this.makeHTTPcall(urlString);
         String BusLineNumber = "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].MonitoredVehicleJourney.PublishedLineName()";
+        String StopPointName = "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].MonitoredVehicleJourney.MonitoredCall.StopPointName()";
         String RecordedTime = "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[0].RecordedAtTime()";
         String serverTime = "Siri.ServiceDelivery.ResponseTimestamp()";
 
@@ -58,10 +59,8 @@ public class ApiCaller extends HelperMethods{
 
             result = "\nData old by: " + this.displayTimeDiff(serverTime, RecordedTime);
             result += "\nBus detail: " + jsonBusDetail(jr.smartJsonParser(jsonObj, BusLineNumber), params[1]);
+            result += "\nStop Name: " +  jsonBusDetail(jr.smartJsonParser(jsonObj, StopPointName), params[1]);
 
-    //            result += "\n# of stops away: " + jr.smartJsonParser(jsonObj, getStopsAway(0));
-    //            result += "\n# of stops away: " + jr.smartJsonParser(jsonObj, getStopsAway(1));
-    //            result += "\n# of stops away: " + jr.smartJsonParser(jsonObj, getStopsAway(2));
             result += getStopsAway(jsonObj);
             result += "\n";
 

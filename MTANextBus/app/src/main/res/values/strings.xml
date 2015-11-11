@@ -4,6 +4,7 @@
     <string name="title_section1">Going Home</string>
     <string name="title_section2">Going Office</string>
     <string name="title_section3">Going Other</string>
+    <string name="title_section4">Testing Custom</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -14,4 +15,9 @@
     <string name="action_help">Help</string>
     <string name="action_about">About</string>
 
+    <string name="work_in_progress">Work in progress. Current implementation is only for going to office for my bus stop. Coming soon the settings features for user defined bus stop and bus number.</string>
+    <string name="Manual_selection_busstop">Please enter your bus number and the stop id. Stop id can be found on bus stop which is 6 digit code like 805123</string>
+    <string name="Search_for_Bus_Number">Enter Bus Number</string>
+    <string name="Search_for_Bus_Stop">Enter Bus Stop</string>
+    <string name="button_accept">Accept Bus</string>
 </resources>

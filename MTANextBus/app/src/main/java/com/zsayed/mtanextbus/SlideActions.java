@@ -16,4 +16,9 @@ public class SlideActions {
         String result = "BUS DETAILS FOR MY OTHER\n";
         return result;
     }
+
+    public String customStop() {
+        String result = "BUS DETAILS FOR CUSTOM STOP\n";
+        return result;
+    }
 }
