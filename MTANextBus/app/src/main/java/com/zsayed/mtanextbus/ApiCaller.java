@@ -3,6 +3,7 @@ package com.zsayed.mtanextbus;
 import android.os.AsyncTask;
 import android.widget.TextView;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
@@ -19,16 +20,31 @@ public class ApiCaller extends HelperMethods{
         return "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[" + i + "].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.StopsFromCall()";
     }
 
+    public boolean isLimited(JSONObject jsonObj, int busIndex) {
+        String query = "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[" + busIndex + "].MonitoredVehicleJourney.DestinationName()";
+        String destName = "";
+        try {
+            destName = jr.smartJsonParser(jsonObj, query);
+        } catch (JSONException e) {
+
+        }
+        finally {
+            return destName.contains("LTD");
+        }
+
+    }
+
     public String getStopsAway(JSONObject jsonObj) {
         ArrayList arr = new ArrayList();
         String result = "";
         try {
             for(int j=0; j<5; j++) {
             String query = "Siri.ServiceDelivery.StopMonitoringDelivery[0].MonitoredStopVisit[" + j + "].MonitoredVehicleJourney.MonitoredCall.Extensions.Distances.StopsFromCall()";
-                int temp = Integer.parseInt(jr.smartJsonParser(jsonObj, query));
-                if(temp != 0 && !arr.contains(temp)) {
-                    arr.add(temp);
-                    result += "\n# of stops away: " + temp;
+                int stop = Integer.parseInt(jr.smartJsonParser(jsonObj, query));
+                String ltd = isLimited(jsonObj, j)? " L" : "";
+                if(stop != 0 && !arr.contains(stop)) {
+                    arr.add(stop);
+                    result += "\n# of stops away: " + stop + ltd;
                 }
             }
         }
