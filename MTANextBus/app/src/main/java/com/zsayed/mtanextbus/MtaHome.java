@@ -190,20 +190,20 @@ public class MtaHome extends ActionBarActivity
         customBusData(false);
         switch (number) {
             case 1:
-                mTitle = getString(R.string.title_section1);
-                displayOutput = sa.goingOffice();
-                this.makeAPICall(501362, "MTABC_Q25");
-                this.makeAPICall(501362, "MTABC_Q34");
-                this.makeAPICall(501362, "MTA%20NYCT_Q17");
-                this.makeAPICall(501362, "MTA%20NYCT_Q27");
-                break;
-            case 2:
                 mTitle = getString(R.string.title_section2);
                 displayOutput = sa.goingOffice();
                 this.makeAPICall(501363, "MTABC_Q25");
                 this.makeAPICall(501363, "MTABC_Q34");
                 this.makeAPICall(501363, "MTA%20NYCT_Q17");
                 this.makeAPICall(501363, "MTA%20NYCT_Q27");
+                break;
+            case 2:
+                mTitle = getString(R.string.title_section1);
+                displayOutput = sa.goingOffice();
+                this.makeAPICall(501362, "MTABC_Q25");
+                this.makeAPICall(501362, "MTABC_Q34");
+                this.makeAPICall(501362, "MTA%20NYCT_Q17");
+                this.makeAPICall(501362, "MTA%20NYCT_Q27");
                 break;
             case 3:
                 mTitle = getString(R.string.title_section3);
