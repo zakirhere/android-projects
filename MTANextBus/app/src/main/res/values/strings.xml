@@ -5,6 +5,8 @@
     <string name="title_section2">Going Office</string>
     <string name="title_section3">Going Other</string>
     <string name="title_section4">Testing Custom</string>
+    <string name="title_towards_masjid">Going Masjid</string>
+    <string name="title_from_masjid">From Masjid</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

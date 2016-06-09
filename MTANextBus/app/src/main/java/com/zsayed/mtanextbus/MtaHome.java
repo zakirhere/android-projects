@@ -212,6 +212,22 @@ public class MtaHome extends ActionBarActivity
                 this.makeAPICall(501570, "MTA%20NYCT_Q27");  // coming from car parking
                 break;
             case 4:
+                mTitle = getString(R.string.title_towards_masjid); //Kissena/holly
+                displayOutput = sa.goingOther();
+                this.makeAPICall(504081, "MTA%20NYCT_Q17");
+                this.makeAPICall(504081, "MTABC_Q25");
+                this.makeAPICall(504081, "MTABC_Q34");
+                this.makeAPICall(504081, "MTA%20NYCT_Q27");
+                break;
+            case 5:
+                mTitle = getString(R.string.title_from_masjid); //kissena/holly
+                displayOutput = sa.goingOther();
+                this.makeAPICall(501360, "MTA%20NYCT_Q17");
+                this.makeAPICall(501360, "MTABC_Q25");
+                this.makeAPICall(501360, "MTABC_Q34");
+                this.makeAPICall(501360, "MTA%20NYCT_Q27");
+                break;
+            case 6:
                 mTitle = getString(R.string.title_section4);
                 customBusData(true);
 
