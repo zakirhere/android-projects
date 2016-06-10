@@ -33,6 +33,28 @@
     </PreferenceCategory>
 
     <PreferenceCategory
+            android:title="H-TO-M">
+
+        <EditTextPreference
+                android:key="htom_stop_edittext"
+                android:title="Edit stop name"
+                android:summary="Modify stop intersection for office"
+                android:dialogTitle="Exact originating street intersection" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+            android:title="M-TO-H">
+
+        <EditTextPreference
+                android:key="mtoh_stop_edittext"
+                android:title="Edit stop name"
+                android:summary="Modify stop intersection for office"
+                android:dialogTitle="Exact originating street intersection" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
         android:title="OTHER">
 
         <EditTextPreference

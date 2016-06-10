@@ -21,4 +21,13 @@ public class SlideActions {
         String result = "BUS DETAILS FOR CUSTOM STOP\n";
         return result;
     }
+
+    public String goingMasjid() {
+        String result = "BUS DETAILS FOR MASJID\n";
+        return result;
+    }
+    public String comingMasjid() {
+        String result = "BUS DETAILS FROM MASJID\n";
+        return result;
+    }
 }
